@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "532481957153",
+    "project_id": "theheadsngo-861d6",
+    "storage_bucket": "theheadsngo-861d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532481957153:android:ea9ad1a0c635a1217e3260",
+        "android_client_info": {
+          "package_name": "com.example.dhruvin_task_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0VTC3BCwCoaaXWxVF2P8TS3EuenScjdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532481957153:android:27e080d525d0f7e37e3260",
+        "android_client_info": {
+          "package_name": "com.example.theheadsngo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0VTC3BCwCoaaXWxVF2P8TS3EuenScjdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532481957153:android:fcb001b1c7854a287e3260",
+        "android_client_info": {
+          "package_name": "com.theheadsngo.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0VTC3BCwCoaaXWxVF2P8TS3EuenScjdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
