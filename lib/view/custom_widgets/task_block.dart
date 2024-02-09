@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_hive/view/Screens/task_screens/task_detail_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_hive/view/custom_widgets/timer_screen.dart';
 
 import '../../Core/Constants/colors.dart';
 
@@ -95,13 +96,14 @@ class _TaskDataState extends State<TaskData> {
                             'Due: ',
                             style: TextStyle(fontSize: 16),
                           ),
-                          Row(
-                            children: [
-                              Text(widget.timeValue),
-                              IconButton(onPressed:() =>  widget.timerButton(), icon: widget.iconTimer)
-                            ],
-                          ),
-                          // ReversedTimer(durationString: dueDate, index: index,documentKey: task.id),
+                          widget.iconTimer,
+                          // Row(
+                          //   children: [
+                          //     Text(widget.timeValue),
+                          //     IconButton(onPressed:() =>  widget.timerButton(), icon: widget.iconTimer)
+                          //   ],
+                          // ),
+                          ReversedTimer(durationString: widget.dueDate, index: widget.index,documentKey: widget.task.id),
                         ],
                       ),
                     ],

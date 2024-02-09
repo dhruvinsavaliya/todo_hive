@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_hive/Core/Constants/local_storage.dart';
+import 'package:todo_hive/Core/controller/task_controller.dart';
 import 'package:todo_hive/Core/shared_preference/shared_preference_services.dart';
 import 'package:todo_hive/view/Screens/task_screens/tasks_screen.dart';
 import 'package:ndialog/ndialog.dart';
@@ -15,6 +16,7 @@ class SignUpController extends GetxController {
   RxBool isPasswordVisible = false.obs;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  RxInt currentTimerTask = (-1).obs;
 
   // bool get isPasswordVisible => _isPasswordVisible.value;
 
@@ -34,7 +36,8 @@ class SignUpController extends GetxController {
         password: password,
       );
       User? user = userCredential.user;
-      await storeUserData(userId: user!.uid, name: name, email: email);
+      Get.find<TaskController>().username.value = user!.displayName!;
+      await storeUserData(userId: user.uid, name: name, email: email);
       CustomSnackBar.showSuccess('SignUp Successfully');
       dialog.dismiss();
       setDataToLocalStorage(dataType: LocalStorage.stringType, prefKey: LocalStorage.email,stringData: email.toString());

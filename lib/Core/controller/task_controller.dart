@@ -59,21 +59,6 @@ class TaskController extends GetxController {
     }
   }
 
-
-  // Future addTaskHive() async {
-  //   final taskDetails = Boxes.taskDetails();
-  //
-  //
-  //   AccountMasterModel newCompany = AccountMasterModel(
-  //     accountName: accountName,
-  //   );
-  //   log("newCompany   ==-=${newCompany.accountName}");
-  //
-  //   taskDetails.add(newCompany);
-  //   // clearControllers();
-  //   update();
-  // }
-
   Future<void> addTask(String title, String description) async {
     ProgressDialog dialog = ProgressDialog(Get.context!,
         title: const Text('Loading'), message: const Text('Please wait'));

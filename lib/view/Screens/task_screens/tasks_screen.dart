@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
 
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:todo_hive/Core/controller/task_controller.dart';
 import 'package:todo_hive/Core/enums/task_sorting.dart';
 import 'package:todo_hive/Core/hive/boxes/boxes.dart';
 import 'package:todo_hive/Core/notification_services.dart';
+import 'package:todo_hive/garb/timing.dart';
 import 'package:todo_hive/main.dart';
 import 'package:todo_hive/view/Screens/task_screens/add_task_screen.dart';
 import 'package:todo_hive/view/custom_widgets/custom_snackbars.dart';
@@ -39,6 +42,7 @@ class _TasksScreenState extends State<TasksScreen> {
     // notificationServices.getDeviceToken().then((value){});
     fetchTasks();
   }
+  List<Timer?>? timers;
 
   void fetchTasks() async {
     String? docId = prefs?.getString("docId");
@@ -226,6 +230,8 @@ class _TasksScreenState extends State<TasksScreen> {
                           int minutes = int.parse(timerParts[0]);
                           int seconds = int.parse(timerParts[1]);
 
+                          Timer? timerData;
+
                           return taskController.searchController.value.isEmpty
                               || (taskController.searchController.value.isNotEmpty && task.title.startsWith(taskController.searchController.value))
                               ? TaskData(
@@ -256,16 +262,67 @@ class _TasksScreenState extends State<TasksScreen> {
                               CustomSnackBar.showSuccess('Task Deleted Successfully');
                             },
                             dueDate: task.dueDate,
-                              timerButton: (){
-                                // if (_timer?.isActive == true) {
-                                //   _timer?.cancel();
-                                // } else {
-                                //   // Start the timer
-                                //   startTimer();
-                                // }
-                              },
+                              timerButton:(){},
+
                             timeValue: '$minutes:${seconds.toString().padLeft(2, '0')}',
-                            iconTimer: const Icon(/*_timer?.isActive == true ? Icons.stop : */ Icons.play_arrow),
+                            // iconTimer:   Row(
+                            //   children: [
+                            //     Text('$minutes:${seconds.toString().padLeft(2, '0')}'),
+                            //     IconButton(onPressed:(){
+                            //       print("called automatically");
+                            //       timerData = Timer.periodic(const Duration(seconds: 1), (timer) {
+                            //         if (minutes > 0 || seconds > 0) {
+                            //           setState(() {
+                            //             if (seconds == 0) {
+                            //               minutes--;
+                            //               seconds = 59;
+                            //             } else {
+                            //               seconds--;
+                            //             }
+                            //           });
+                            //           // Update the Hive database
+                            //           Boxes.taskDetails().putAt(
+                            //               index,
+                            //               Task(
+                            //                 title: task.title,
+                            //                 description: task.description,
+                            //                 createDate: task.createDate,
+                            //                 id: task.dueDate,
+                            //                 timerOn: true,
+                            //                 done: task.done,
+                            //                 dueDate: '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
+                            //               )
+                            //             // '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}'
+                            //           );
+                            //         }
+                            //         else {
+                            //           timer.cancel();
+                            //         }
+                            //       });
+                            //       // setState(() {});
+                            //     }, icon: Icon(  Icons.play_arrow,color: task.timerOn == false ?Colors.red:Colors.black),),
+                            //     IconButton(onPressed:(){
+                            //       if(timerData != null ) {
+                            //         timerData?.cancel();
+                            //       }
+                            //       Boxes.taskDetails().putAt(
+                            //           index,
+                            //           Task(
+                            //             title: task.title,
+                            //             description: task.description,
+                            //             createDate: task.createDate,
+                            //             id: task.dueDate,
+                            //             timerOn: false,
+                            //             done: task.done,
+                            //             dueDate: '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',));
+                            //       // setState(() {});
+                            //     },
+                            //       icon: Icon( Icons.stop,color: task.timerOn == true ?Colors.red:Colors.black, ),)
+                            //   ],
+                            // ),
+                            iconTimer:   Row(
+                              children: [],
+                            ),
                             createDate: task.createDate,
                             index: index,
                           )

@@ -59,10 +59,6 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       Text(DateFormat('dd-MM-yyyy').format(widget.data.createDate/*.toDate()*/).toString()),
                     ],
                   ),
-                  Text(
-                    "${widget.data.id}",
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
                   Row(
                     children: [
                       const Text(
