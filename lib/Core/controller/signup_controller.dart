@@ -36,14 +36,14 @@ class SignUpController extends GetxController {
         password: password,
       );
       User? user = userCredential.user;
-      Get.find<TaskController>().username.value = user!.displayName!;
+      Get.find<TaskController>().username.value = user!.displayName??"User";
       await storeUserData(userId: user.uid, name: name, email: email);
       CustomSnackBar.showSuccess('SignUp Successfully');
       dialog.dismiss();
       setDataToLocalStorage(dataType: LocalStorage.stringType, prefKey: LocalStorage.email,stringData: email.toString());
       Get.offAll(() => const TasksScreen());
     } catch (e) {
-      CustomSnackBar.showError('SignUp Failed!');
+      CustomSnackBar.showError('SignUp Failed! $e');
       dialog.dismiss();
       if (kDebugMode) {
         print('Error signing up: $e');
